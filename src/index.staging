@@ -1,0 +1,44 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import ClientMonitor from '@sixthsense/sixthsense-javascript-agent';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+ClientMonitor.register({
+    service: "eComm-React", // Name the app
+    collector: 'https://stg-http-collector-observability.sixthsense.rakuten.com/oap', // Provided by the Onboarding team
+    pagePath: "index.html",
+    serviceVersion: "1.2.1",
+    enableSPA: true,
+    useFmp: true,
+    autoTracePerf: true,
+    detailMode: true,
+    environment: "prod",
+    authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFtSWQiOiIxOGZhMDJmMS1iNjc1LTQ1MmQtYjllYy0yN2ZhYzdlZWM5MzUiLCJiaWxsaW5nX2lkIjoiYjVjNjVkMDgtMTVhYi00NDkwLTliZDMtM2FiZDc3ODZkN2YxIiwiaWF0IjoxNjIwMzY2NDgyLCJhdWQiOiJvYXAiLCJpc3MiOiJzaXh0aC1zZW5zLWF1dGgifQ.5U4Tlh8Abf25Wa-SJaf4KQHnNz8C-S35hG7ZG5PIHo8",
+    enableDistributedTracing: true
+  });
+   
+  
+ClientMonitor.setPerformance({
+    service: "eComm-React",
+    collector: 'https://stg-http-collector-observability.sixthsense.rakuten.com/oap',
+    serviceVersion: "1.2.1",
+    perfInterval: 1000,
+    useFmp: true,
+    authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFtSWQiOiIxOGZhMDJmMS1iNjc1LTQ1MmQtYjllYy0yN2ZhYzdlZWM5MzUiLCJiaWxsaW5nX2lkIjoiYjVjNjVkMDgtMTVhYi00NDkwLTliZDMtM2FiZDc3ODZkN2YxIiwiaWF0IjoxNjIwMzY2NDgyLCJhdWQiOiJvYXAiLCJpc3MiOiJzaXh0aC1zZW5zLWF1dGgifQ.5U4Tlh8Abf25Wa-SJaf4KQHnNz8C-S35hG7ZG5PIHo8"
+   });
+
+
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
